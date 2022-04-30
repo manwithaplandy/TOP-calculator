@@ -7,9 +7,23 @@ body {
 
 #container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1vw;
+    padding: 1vw;
+    border: solid black 1px;
 }
 
 #screen {
     border: solid black 1px;
+    grid-row: 1;
+    grid-column: 1/ span 3;
+    padding-left: 1vw;
+}
+
+.operator {
+    grid-column: -1;
+}
+
+#zero {
+    grid-column-start: 2;
 }
