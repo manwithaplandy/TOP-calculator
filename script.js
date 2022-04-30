@@ -1,13 +1,13 @@
-// Set up click listeners for all number buttons
-// let buttons = Array.from(document.getElementsByClassName('number'));
-// buttons.forEach(button => {
-//     button.addEventListener('click', setOperand(button.textContent));
-// });
-
 // Initialize variables for operands
 let firstOperand = '';
 let secondOperand = '';
-let operator;
+let operator = null;
+
+// Set up click listeners for all number buttons
+let buttons = Array.from(document.getElementsByClassName('number'));
+buttons.forEach(button => {
+    button.addEventListener('click', setOperand(button.textContent));
+});
 
 // User clicks button, adds numbers to first operand until operator is selected
 //   if (operator) is switch to decide whether first or second
@@ -26,4 +26,10 @@ function setOperand(num) {
         // Add digit to secondOperand
         secondOperand += num;
     }
+}
+
+// Refresh screen with updated values, to be called at the end of every button press
+let screenContent = document.getElementById('screen');
+function refreshScreen() {
+    screenContent.textContent = firstOperand + operator + secondOperand; 
 }
