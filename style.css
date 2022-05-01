@@ -14,6 +14,7 @@ body {
     width: 50vh;
     height: 50vh;
     min-width: -webkit-min-content;
+    background-color: lightgray;
 }
 
 #screen {
@@ -24,10 +25,12 @@ body {
     display: flex;
     align-items: center;
     font-size: 6vh;
+    background-color: white;
 }
 
 .operator {
     grid-column: 4;
+    background-color: #696969;
 }
 
 #zero {
@@ -36,4 +39,9 @@ body {
 
 button {
     font-size: 5vh;
+}
+
+#clear {
+    background-color: rgb(181, 72, 0);
+    border-color: rgb(181, 72, 0);
 }
