@@ -8,21 +8,22 @@ body {
 #container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1vw;
-    padding: 1vw;
+    gap: 1vh;
+    padding: 1vh;
     border: solid black 1px;
-    width: min(50vw, 50vh);
-    height: min(50vw, 50vh);
+    width: 50vh;
+    height: 50vh;
+    min-width: -webkit-min-content;
 }
 
 #screen {
     border: solid black 1px;
     grid-row: 1;
     grid-column: 1/ span 3;
-    padding-left: 1vw;
+    padding-left: 1vh;
     display: flex;
     align-items: center;
-    font-size: 6vw;
+    font-size: 6vh;
 }
 
 .operator {
@@ -34,5 +35,5 @@ body {
 }
 
 button {
-    font-size: min(5vw, 5vh);
+    font-size: 5vh;
 }
