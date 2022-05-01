@@ -1,12 +1,13 @@
-// Initialize variables for operands
+// Initialize variables
 let firstOperand = '';
 let secondOperand = '';
 let operator = null;
+let screenContent = document.getElementById('screen');
 
 // Set up click listeners for all number buttons
 let buttons = Array.from(document.getElementsByClassName('number'));
 buttons.forEach(button => {
-    button.addEventListener('click', setOperand(button.textContent));
+    button.addEventListener('click', () => setOperand(button.textContent));
 });
 
 // User clicks button, adds numbers to first operand until operator is selected
@@ -26,21 +27,55 @@ function setOperand(num) {
         // Add digit to secondOperand
         secondOperand += num;
     }
+    refreshScreen();
 }
 
 // Set the operator as a string
 function setOperator(str) {
+    // if second operand exists, run calculation before changing operator
+    if (secondOperand) {
+        //calculate();
+        // secondOperand = null;
+    }
     operator = str;
+    refreshScreen();
 }
 
 // Add event listeners to set operator to respective operator
 let operatorButtons = Array.from(document.getElementsByClassName('operator'));
 operatorButtons.forEach(operatorButton => {
-    operatorButton.addEventListener('click', setOperator(operatorButton.textContent));
+    operatorButton.addEventListener('click', () => setOperator(operatorButton.textContent));
 })
 
 // Refresh screen with updated values, to be called at the end of every button press
-let screenContent = document.getElementById('screen');
 function refreshScreen() {
-    screenContent.textContent = firstOperand + operator + secondOperand; 
+    // Only display truthy elements
+    if (operator && secondOperand) {
+        screenContent.textContent = `${firstOperand} ${operator} ${secondOperand}`; 
+    } else if (operator && !secondOperand) {
+        screenContent.textContent = `${firstOperand} ${operator}`;
+    } else if (!operator && !secondOperand) {
+        screenContent.textContent = `${firstOperand}`;
+    }
 }
+
+// Calculate results -
+//    Return results to firstOperand
+function calculate(firstOp, operator, secondOp) {
+    firstOp = parseFloat(firstOperand);
+    secondOp = parseFloat(secondOperand);
+    // If statements to determine operator
+    if (operator === '+'){
+        firstOperand = firstOp + secondOp;
+    } else if (operator === '-') {
+        firstOperand = firstOp - secondOp;
+    } else if (operator === '*') {
+        firstOperand = firstOp * secondOp;
+    } else if (operator = '/') {
+        firstOperand = firstOp / secondOp;
+    } else {
+        console.error('How the shit did you manage to get this error?');
+    }
+}
+
+// = button - run calculate() and clear operator and secondOperand
