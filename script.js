@@ -111,3 +111,43 @@ function clear() {
     operator = null;
     refreshScreen();
 }
+
+// Add functionality for number keys
+document.addEventListener('keydown', (key) => {
+    if (key.key === '1') {
+        setOperand('1');
+    } else if (key.key === '2') {
+        setOperand('2');
+    } else if (key.key === '3') {
+        setOperand('3');
+    } else if (key.key === '4') {
+        setOperand('4');
+    } else if (key.key === '5') {
+        setOperand('5');
+    } else if (key.key === '6') {
+        setOperand('6');
+    } else if (key.key === '7') {
+        setOperand('7');
+    } else if (key.key === '8') {
+        setOperand('8');
+    } else if (key.key === '9') {
+        setOperand('9');
+    } else if (key.key === '0') {
+        setOperand('0');
+    } else if (key.key === '+') {
+        setOperator('+');
+    } else if (key.key === '-') {
+        setOperator('-');
+    } else if (key.key === '*') {
+        setOperator('*');
+    } else if (key.key === '/') {
+        setOperator('/');
+    } else if (key.key === 'Enter') {
+        calculate(firstOperand, operator, secondOperand);
+        operator = null;
+        secondOperand = null;
+        refreshScreen();
+    } else if (key.key === 'Delete') {
+        clear();
+    }
+})
