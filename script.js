@@ -5,6 +5,7 @@ let operator = null;
 let screenContent = document.getElementById('screen');
 let equalButton = document.getElementById('equals');
 let clearButton = document.getElementById('clear');
+let dotButton = document.getElementById('dot');
 
 // Set up click listeners for all number buttons
 let buttons = Array.from(document.getElementsByClassName('number'));
@@ -149,5 +150,34 @@ document.addEventListener('keydown', (key) => {
         refreshScreen();
     } else if (key.key === 'Delete') {
         clear();
+    } else if (key.key === '.') {
+        if (firstOperand && !secondOperand) {
+            firstOperand = addDecimal(firstOperand);
+            refreshScreen();
+        } else if (firstOperand && secondOperand) {
+            secondOperand = addDecimal(secondOperand);
+            refreshScreen();
+        }
     }
 })
+
+// Add functionality for decimal
+//    Can only be one decimal per operand
+//    Use if statements to determine if number is Integer (no decimal) and only add decimal if int
+dotButton.addEventListener('click', () => {
+    if (firstOperand && !secondOperand) {
+        firstOperand = addDecimal(firstOperand);
+        refreshScreen();
+    } else if (firstOperand && secondOperand) {
+        secondOperand = addDecimal(secondOperand);
+        refreshScreen();
+    }
+});
+
+function addDecimal(operand) {
+    if (Number.isInteger(parseFloat(operand))) { // Is an integer
+        return operand + '.';
+    } else {
+        return operand;
+    }
+}
