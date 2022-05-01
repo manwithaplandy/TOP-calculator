@@ -81,6 +81,9 @@ function refreshScreen() {
     } else if (!operator && !secondOperand) {
         screenContent.textContent = `${firstOperand}`;
     }
+    if (firstOperand == 'Infinity') {
+        screenContent.textContent = 'Err';
+    }
 }
 
 // Calculate results -
@@ -90,13 +93,13 @@ function calculate(firstOp, operator, secondOp) {
     secondOp = parseFloat(secondOperand);
     // If statements to determine operator
     if (operator === '+'){
-        firstOperand = firstOp + secondOp;
+        firstOperand = Math.round((firstOp + secondOp) * 10000) / 10000;
     } else if (operator === '-') {
-        firstOperand = firstOp - secondOp;
+        firstOperand = Math.round((firstOp - secondOp) * 10000) / 10000;
     } else if (operator === '*') {
-        firstOperand = firstOp * secondOp;
+        firstOperand = Math.round((firstOp * secondOp) * 10000) / 10000;
     } else if (operator = '/') {
-        firstOperand = firstOp / secondOp;
+        firstOperand = Math.round((firstOp / secondOp) * 10000) / 10000;
     } else {
         console.error('How the shit did you manage to get this error?');
     }
