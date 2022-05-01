@@ -28,6 +28,17 @@ function setOperand(num) {
     }
 }
 
+// Set the operator as a string
+function setOperator(str) {
+    operator = str;
+}
+
+// Add event listeners to set operator to respective operator
+let operatorButtons = Array.from(document.getElementsByClassName('operator'));
+operatorButtons.forEach(operatorButton => {
+    operatorButton.addEventListener('click', setOperator(operatorButton.textContent));
+})
+
 // Refresh screen with updated values, to be called at the end of every button press
 let screenContent = document.getElementById('screen');
 function refreshScreen() {
