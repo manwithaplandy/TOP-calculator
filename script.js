@@ -3,6 +3,7 @@ let firstOperand = '';
 let secondOperand = '';
 let operator = null;
 let screenContent = document.getElementById('screen');
+let equalButton = document.getElementById('equals');
 
 // Set up click listeners for all number buttons
 let buttons = Array.from(document.getElementsByClassName('number'));
@@ -46,6 +47,15 @@ let operatorButtons = Array.from(document.getElementsByClassName('operator'));
 operatorButtons.forEach(operatorButton => {
     operatorButton.addEventListener('click', () => setOperator(operatorButton.textContent));
 })
+
+// Add event listener for equal button
+equalButton.addEventListener('click', () => {
+    calculate(firstOperand, operator, secondOperand);
+    operator = null;
+    secondOperand = null;
+    refreshScreen();
+    firstOperand = null;
+});
 
 // Refresh screen with updated values, to be called at the end of every button press
 function refreshScreen() {
