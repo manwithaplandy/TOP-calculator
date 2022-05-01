@@ -63,7 +63,6 @@ equalButton.addEventListener('click', () => {
     operator = null;
     secondOperand = null;
     refreshScreen();
-    firstOperand = null;
 });
 
 // Add event listener for clear button

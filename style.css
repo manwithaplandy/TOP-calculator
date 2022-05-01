@@ -7,10 +7,12 @@ body {
 
 #container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1vw;
     padding: 1vw;
     border: solid black 1px;
+    width: 50vw;
+    height: 50vw;
 }
 
 #screen {
@@ -18,10 +20,13 @@ body {
     grid-row: 1;
     grid-column: 1/ span 3;
     padding-left: 1vw;
+    display: flex;
+    align-items: center;
+    font-size: 6vw;
 }
 
 .operator {
-    grid-column: -1;
+    grid-column: 4;
 }
 
 #zero {
