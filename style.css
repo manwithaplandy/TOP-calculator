@@ -11,8 +11,8 @@ body {
     gap: 1vw;
     padding: 1vw;
     border: solid black 1px;
-    width: 50vw;
-    height: 50vw;
+    width: min(50vw, 50vh);
+    height: min(50vw, 50vh);
 }
 
 #screen {
