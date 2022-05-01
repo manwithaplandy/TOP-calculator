@@ -4,6 +4,7 @@ let secondOperand = '';
 let operator = null;
 let screenContent = document.getElementById('screen');
 let equalButton = document.getElementById('equals');
+let clearButton = document.getElementById('clear');
 
 // Set up click listeners for all number buttons
 let buttons = Array.from(document.getElementsByClassName('number'));
@@ -23,10 +24,18 @@ buttons.forEach(button => {
 function setOperand(num) {
     if (!operator) {
         // Add digit to firstOperand
-        firstOperand += num;
+        if (firstOperand === null) { // Was getting errors with += on null, this should resolve it
+            firstOperand = num;
+        } else {
+            firstOperand += num;
+        }
     } else {
         // Add digit to secondOperand
-        secondOperand += num;
+        if (secondOperand === null) {
+            secondOperand = num;
+        } else {
+            secondOperand += num;
+        }
     }
     refreshScreen();
 }
@@ -35,8 +44,8 @@ function setOperand(num) {
 function setOperator(str) {
     // if second operand exists, run calculation before changing operator
     if (secondOperand) {
-        //calculate();
-        // secondOperand = null;
+        calculate(firstOperand, operator, secondOperand);
+        secondOperand = null;
     }
     operator = str;
     refreshScreen();
@@ -57,10 +66,15 @@ equalButton.addEventListener('click', () => {
     firstOperand = null;
 });
 
+// Add event listener for clear button
+clearButton.addEventListener('click', () => clear());
+
 // Refresh screen with updated values, to be called at the end of every button press
 function refreshScreen() {
     // Only display truthy elements
-    if (operator && secondOperand) {
+    if (!operator && !firstOperand && !secondOperand) {
+        screenContent.textContent = '';
+    } else if (operator && secondOperand) {
         screenContent.textContent = `${firstOperand} ${operator} ${secondOperand}`; 
     } else if (operator && !secondOperand) {
         screenContent.textContent = `${firstOperand} ${operator}`;
@@ -88,4 +102,10 @@ function calculate(firstOp, operator, secondOp) {
     }
 }
 
-// = button - run calculate() and clear operator and secondOperand
+// Clear - set operators and operand to null, refresh the screen
+function clear() {
+    firstOperand = null;
+    secondOperand = null;
+    operator = null;
+    refreshScreen();
+}
